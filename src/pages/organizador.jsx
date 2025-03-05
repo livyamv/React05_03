@@ -8,15 +8,15 @@ import TableCell from "@mui/material/TableCell";
 import Paper from "@mui/material/Paper";
 import api from "../axios/axios";
 
-function listOrganizadores() {
-  const [events, setOrganizadores] = useState([]);
+function ListOrganizador() {
+  const [events, setOrganizador] = useState([]);
 
-  async function getOrganizadores() {
-    //Chamada da Api
-    await api.getOrganizadores().then(
+  async function getOrganizador() {
+    // Chamada da API
+    await api.getOrganizador().then(
       (response) => {
-        console.log(response.data.events);
-        setOrganizadores(response.data.events);
+        console.log(response.data.organizador);
+        setOrganizador(response.data.organizador); // Supondo que 'events' seja um array
       },
       (error) => {
         console.log("Erro ", error);
@@ -24,24 +24,31 @@ function listOrganizadores() {
     );
   }
 
-  const listOrganizadores = events.map((organizadores) => {
-    return (
-      <TableRow key={organizador.id_organizador}>
-        <TableCell align="center">{organizador.nome}</TableCell>
-        <TableCell align="center">{organizador.email}</TableCell>
-        <TableCell align="center">{organizador.senha}</TableCell>
-        <TableCell align="center">{organizador.telefone}</TableCell>
-      </TableRow>
-    );
-  });
-
   useEffect(() => {
-    getEventos();
+    getOrganizador();
   }, []);
+
+  // Verifique se events é um array válido antes de usar o map
+  const listOrganizadores = Array.isArray(events) ? (
+    events.map((organizador) => {
+      return (
+        <TableRow key={organizador.id_organizador}>
+          <TableCell align="center">{organizador.nome}</TableCell>
+          <TableCell align="center">{organizador.email}</TableCell>
+          <TableCell align="center">{organizador.senha}</TableCell>
+          <TableCell align="center">{organizador.telefone}</TableCell>
+        </TableRow>
+      );
+    })
+  ) : (
+    <TableRow>
+      <TableCell colSpan="4" align="center">Nenhum organizador encontrado</TableCell>
+    </TableRow>
+  ); // Exibe uma mensagem caso a lista de organizadores esteja vazia ou inválida
 
   return (
     <div>
-      <h5>Eventos:</h5>
+      <h2>Organizadores:</h2>
       <TableContainer component={Paper} style={{ margin: "2px" }}>
         <Table size="small">
           <TableHead
@@ -62,4 +69,4 @@ function listOrganizadores() {
   );
 }
 
-export default listOrganizadores;
+export default ListOrganizador;

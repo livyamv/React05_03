@@ -8,7 +8,6 @@ import TableCell from "@mui/material/TableCell";
 import Paper from "@mui/material/Paper";
 import api from "../axios/axios";
 import { Button } from "@mui/material";
-import { Link } from "react-router-dom";
 
 function listEvents() {
   const [events, setEventos] = useState([]);
@@ -43,7 +42,7 @@ function listEvents() {
 
   return (
     <div>
-      <h5>Eventos:</h5>
+      <h2>Eventos:</h2>
       <TableContainer component={Paper} style={{ margin: "2px" }}>
         <Table size="small">
           <TableHead
@@ -60,8 +59,9 @@ function listEvents() {
           <TableBody>{listEvents}</TableBody>
         </Table>
       </TableContainer>
-      <Button fullWidth variant="contained" component={Link} to="/criarEvento"> Criar Evento
-        </Button>
+      <a href="criar_evento.html">
+        <Button  style={{ backgroundColor: "#f4d6f6", borderStyle: "solid" }}>Criar Evento</Button>
+        </a>
     </div>
   );
 }

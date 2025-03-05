@@ -9,7 +9,7 @@ const api = axios.create({
 
 const sheets ={
     getEventos:()=>api.get("/evento"),
-    getIngressos:()=>api.get("/ingressos"),
+    getIngressos:()=>api.get("/ingresso"),
     getOrganizador:()=>api.get("/organizador")
 
 }

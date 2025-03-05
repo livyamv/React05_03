@@ -19,7 +19,7 @@ function listIngressos() {
     await api.getIngressos().then(
       (response) => {
         console.log(response.data.events);
-        setIngressos(response.data.events);
+        setIngressos(response.data.ingresso);
       },
       (error) => {
         console.log("Erro ", error);
